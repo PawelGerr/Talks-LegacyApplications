@@ -9,5 +9,5 @@
 //------------------------------------------------------------------------------
 
 
-public class MyNativeLib {
+public class MyNativeLib_Swig {
 }

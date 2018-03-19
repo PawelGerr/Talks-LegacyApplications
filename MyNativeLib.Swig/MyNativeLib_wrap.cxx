@@ -243,7 +243,7 @@ static void SWIGUNUSED SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpExcepti
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_MyNativeLib(
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_MyNativeLib_Swig(
                                                 SWIG_CSharpExceptionCallback_t applicationCallback,
                                                 SWIG_CSharpExceptionCallback_t arithmeticCallback,
                                                 SWIG_CSharpExceptionCallback_t divideByZeroCallback, 
@@ -271,7 +271,7 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionCallbacks_MyNativeLib(
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionArgumentCallbacks_MyNativeLib(
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterExceptionArgumentCallbacks_MyNativeLib_Swig(
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentCallback,
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentNullCallback,
                                                 SWIG_CSharpExceptionArgumentCallback_t argumentOutOfRangeCallback) {
@@ -289,7 +289,7 @@ static SWIG_CSharpStringHelperCallback SWIG_csharp_string_callback = NULL;
 #ifdef __cplusplus
 extern "C" 
 #endif
-SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_MyNativeLib(SWIG_CSharpStringHelperCallback callback) {
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_MyNativeLib_Swig(SWIG_CSharpStringHelperCallback callback) {
   SWIG_csharp_string_callback = callback;
 }
 
@@ -299,106 +299,40 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_MyNativeLib(SWIG_CSharpSt
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, msg, ""); return nullreturn; } else
 
 
-#include "../MyNativeLib/Point.h"
+#include "../MyNativeLib/Random.h"
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Point_Count_set(int jarg1) {
-  int arg1 ;
-  
-  arg1 = (int)jarg1; 
-  Point::Count = arg1;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_Point_Count_get() {
+SWIGEXPORT int SWIGSTDCALL CSharp_Random_Next(void * jarg1) {
   int jresult ;
+  Random *arg1 = (Random *) 0 ;
   int result;
   
-  result = (int)Point::Count;
+  arg1 = (Random *)jarg1; 
+  result = (int)(arg1)->Next();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Point_X_set(void * jarg1, int jarg2) {
-  Point *arg1 = (Point *) 0 ;
-  int arg2 ;
-  
-  arg1 = (Point *)jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->X = arg2;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_Point_X_get(void * jarg1) {
-  int jresult ;
-  Point *arg1 = (Point *) 0 ;
-  int result;
-  
-  arg1 = (Point *)jarg1; 
-  result = (int) ((arg1)->X);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Point_Y_set(void * jarg1, int jarg2) {
-  Point *arg1 = (Point *) 0 ;
-  int arg2 ;
-  
-  arg1 = (Point *)jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->Y = arg2;
-}
-
-
-SWIGEXPORT int SWIGSTDCALL CSharp_Point_Y_get(void * jarg1) {
-  int jresult ;
-  Point *arg1 = (Point *) 0 ;
-  int result;
-  
-  arg1 = (Point *)jarg1; 
-  result = (int) ((arg1)->Y);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_Point(int jarg1, int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_Random() {
   void * jresult ;
-  int arg1 ;
-  int arg2 ;
-  Point *result = 0 ;
+  Random *result = 0 ;
   
-  arg1 = (int)jarg1; 
-  arg2 = (int)jarg2; 
-  result = (Point *)new Point(arg1,arg2);
+  result = (Random *)new Random();
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_delete_Point(void * jarg1) {
-  Point *arg1 = (Point *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_Random(void * jarg1) {
+  Random *arg1 = (Random *) 0 ;
   
-  arg1 = (Point *)jarg1; 
+  arg1 = (Random *)jarg1; 
   delete arg1;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Point_Add(void * jarg1, int jarg2, int jarg3) {
-  Point *arg1 = (Point *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  
-  arg1 = (Point *)jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (int)jarg3; 
-  (arg1)->Add(arg2,arg3);
 }
 
 

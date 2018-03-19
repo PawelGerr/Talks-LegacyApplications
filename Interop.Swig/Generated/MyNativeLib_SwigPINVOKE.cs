@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-class MyNativeLibPINVOKE {
+class MyNativeLib_SwigPINVOKE {
 
   protected class SWIGExceptionHelper {
 
@@ -32,8 +32,8 @@ class MyNativeLibPINVOKE {
     static ExceptionArgumentDelegate argumentNullDelegate = new ExceptionArgumentDelegate(SetPendingArgumentNullException);
     static ExceptionArgumentDelegate argumentOutOfRangeDelegate = new ExceptionArgumentDelegate(SetPendingArgumentOutOfRangeException);
 
-    [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="SWIGRegisterExceptionCallbacks_MyNativeLib")]
-    public static extern void SWIGRegisterExceptionCallbacks_MyNativeLib(
+    [global::System.Runtime.InteropServices.DllImport("MyNativeLib_Swig", EntryPoint="SWIGRegisterExceptionCallbacks_MyNativeLib_Swig")]
+    public static extern void SWIGRegisterExceptionCallbacks_MyNativeLib_Swig(
                                 ExceptionDelegate applicationDelegate,
                                 ExceptionDelegate arithmeticDelegate,
                                 ExceptionDelegate divideByZeroDelegate, 
@@ -46,8 +46,8 @@ class MyNativeLibPINVOKE {
                                 ExceptionDelegate overflowDelegate, 
                                 ExceptionDelegate systemExceptionDelegate);
 
-    [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="SWIGRegisterExceptionArgumentCallbacks_MyNativeLib")]
-    public static extern void SWIGRegisterExceptionCallbacksArgument_MyNativeLib(
+    [global::System.Runtime.InteropServices.DllImport("MyNativeLib_Swig", EntryPoint="SWIGRegisterExceptionArgumentCallbacks_MyNativeLib_Swig")]
+    public static extern void SWIGRegisterExceptionCallbacksArgument_MyNativeLib_Swig(
                                 ExceptionArgumentDelegate argumentDelegate,
                                 ExceptionArgumentDelegate argumentNullDelegate,
                                 ExceptionArgumentDelegate argumentOutOfRangeDelegate);
@@ -101,7 +101,7 @@ class MyNativeLibPINVOKE {
     }
 
     static SWIGExceptionHelper() {
-      SWIGRegisterExceptionCallbacks_MyNativeLib(
+      SWIGRegisterExceptionCallbacks_MyNativeLib_Swig(
                                 applicationDelegate,
                                 arithmeticDelegate,
                                 divideByZeroDelegate,
@@ -114,7 +114,7 @@ class MyNativeLibPINVOKE {
                                 overflowDelegate,
                                 systemDelegate);
 
-      SWIGRegisterExceptionCallbacksArgument_MyNativeLib(
+      SWIGRegisterExceptionCallbacksArgument_MyNativeLib_Swig(
                                 argumentDelegate,
                                 argumentNullDelegate,
                                 argumentOutOfRangeDelegate);
@@ -142,7 +142,7 @@ class MyNativeLibPINVOKE {
       if (pendingException != null)
         throw new global::System.ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
       pendingException = e;
-      lock(typeof(MyNativeLibPINVOKE)) {
+      lock(typeof(MyNativeLib_SwigPINVOKE)) {
         numExceptionsPending++;
       }
     }
@@ -153,7 +153,7 @@ class MyNativeLibPINVOKE {
         if (pendingException != null) {
           e = pendingException;
           pendingException = null;
-          lock(typeof(MyNativeLibPINVOKE)) {
+          lock(typeof(MyNativeLib_SwigPINVOKE)) {
             numExceptionsPending--;
           }
         }
@@ -168,49 +168,31 @@ class MyNativeLibPINVOKE {
     public delegate string SWIGStringDelegate(string message);
     static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 
-    [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="SWIGRegisterStringCallback_MyNativeLib")]
-    public static extern void SWIGRegisterStringCallback_MyNativeLib(SWIGStringDelegate stringDelegate);
+    [global::System.Runtime.InteropServices.DllImport("MyNativeLib_Swig", EntryPoint="SWIGRegisterStringCallback_MyNativeLib_Swig")]
+    public static extern void SWIGRegisterStringCallback_MyNativeLib_Swig(SWIGStringDelegate stringDelegate);
 
     static string CreateString(string cString) {
       return cString;
     }
 
     static SWIGStringHelper() {
-      SWIGRegisterStringCallback_MyNativeLib(stringDelegate);
+      SWIGRegisterStringCallback_MyNativeLib_Swig(stringDelegate);
     }
   }
 
   static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
 
 
-  static MyNativeLibPINVOKE() {
+  static MyNativeLib_SwigPINVOKE() {
   }
 
 
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_Point_Count_set")]
-  public static extern void Point_Count_set(int jarg1);
+  [global::System.Runtime.InteropServices.DllImport("MyNativeLib_Swig", EntryPoint="CSharp_Random_Next")]
+  public static extern int Random_Next(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_Point_Count_get")]
-  public static extern int Point_Count_get();
+  [global::System.Runtime.InteropServices.DllImport("MyNativeLib_Swig", EntryPoint="CSharp_new_Random")]
+  public static extern global::System.IntPtr new_Random();
 
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_Point_X_set")]
-  public static extern void Point_X_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_Point_X_get")]
-  public static extern int Point_X_get(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_Point_Y_set")]
-  public static extern void Point_Y_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_Point_Y_get")]
-  public static extern int Point_Y_get(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_new_Point")]
-  public static extern global::System.IntPtr new_Point(int jarg1, int jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_delete_Point")]
-  public static extern void delete_Point(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("MyNativeLib", EntryPoint="CSharp_Point_Add")]
-  public static extern void Point_Add(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("MyNativeLib_Swig", EntryPoint="CSharp_delete_Random")]
+  public static extern void delete_Random(global::System.Runtime.InteropServices.HandleRef jarg1);
 }

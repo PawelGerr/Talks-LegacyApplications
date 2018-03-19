@@ -1,6 +1,7 @@
-%module MyNativeLib
+%module MyNativeLib_Swig
 %{
-#include "../MyNativeLib/Point.h"
+#include "../MyNativeLib/Random.h"
 %}
 
-%include "../MyNativeLib/Point.h"
+#define MYAPI
+%include "../MyNativeLib/Random.h"

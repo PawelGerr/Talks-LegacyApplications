@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy $(SolutionDir)MyNativeLib\out\MyNativeLib.dll $(OutDir)&#xD;&#xA;copy $(SolutionDir)MyNativeLib.Swig\out\MyNativeLib.Swig.dll $(OutDir)" />
+    <Exec Command="copy $(SolutionDir)x64\Release\MyNativeLib.dll $(OutDir)&#xD;&#xA;copy $(SolutionDir)x64\Release\MyNativeLib_Swig.dll $(OutDir)" />
   </Target>
 
 </Project>

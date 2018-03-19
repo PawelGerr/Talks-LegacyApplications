@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 
 namespace Interop.Swig
 {
@@ -6,10 +7,9 @@ namespace Interop.Swig
 	{
 		static void Main(string[] args)
 		{
-			var p = new Point(1, 2);
-			p.Add(3, 4);
+			var random = new Random();
 
-			Console.WriteLine($"Point({p.X}, {p.Y})");
+			Console.WriteLine($"Next random number is {random.Next()}");
 		}
 	}
 }

@@ -9,20 +9,20 @@
 //------------------------------------------------------------------------------
 
 
-public class Point : global::System.IDisposable {
+public class Random : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
-  internal Point(global::System.IntPtr cPtr, bool cMemoryOwn) {
+  internal Random(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Point obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Random obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
-  ~Point() {
+  ~Random() {
     Dispose();
   }
 
@@ -31,7 +31,7 @@ public class Point : global::System.IDisposable {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          MyNativeLibPINVOKE.delete_Point(swigCPtr);
+          MyNativeLib_SwigPINVOKE.delete_Random(swigCPtr);
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
@@ -39,41 +39,12 @@ public class Point : global::System.IDisposable {
     }
   }
 
-  public static int Count {
-    set {
-      MyNativeLibPINVOKE.Point_Count_set(value);
-    } 
-    get {
-      int ret = MyNativeLibPINVOKE.Point_Count_get();
-      return ret;
-    } 
+  public int Next() {
+    int ret = MyNativeLib_SwigPINVOKE.Random_Next(swigCPtr);
+    return ret;
   }
 
-  public int X {
-    set {
-      MyNativeLibPINVOKE.Point_X_set(swigCPtr, value);
-    } 
-    get {
-      int ret = MyNativeLibPINVOKE.Point_X_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public int Y {
-    set {
-      MyNativeLibPINVOKE.Point_Y_set(swigCPtr, value);
-    } 
-    get {
-      int ret = MyNativeLibPINVOKE.Point_Y_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public Point(int x, int y) : this(MyNativeLibPINVOKE.new_Point(x, y), true) {
-  }
-
-  public void Add(int x, int y) {
-    MyNativeLibPINVOKE.Point_Add(swigCPtr, x, y);
+  public Random() : this(MyNativeLib_SwigPINVOKE.new_Random(), true) {
   }
 
 }
