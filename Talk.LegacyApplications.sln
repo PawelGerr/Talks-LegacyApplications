@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interop.ByHand", "Interop.ByHand\Interop.ByHand.csproj", "{D09F0BC4-EC15-4E22-AA6E-023451834276}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3C1487F1-6F09-42B3-9FCA-9937EC0163C3} = {3C1487F1-6F09-42B3-9FCA-9937EC0163C3}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interop.Swig", "Interop.Swig\Interop.Swig.csproj", "{F9A35FBE-1022-4D74-9E90-DE45CDAA26DF}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -12,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interop.Swig", "Interop.Swi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyNativeLib", "MyNativeLib\MyNativeLib.vcxproj", "{3C1487F1-6F09-42B3-9FCA-9937EC0163C3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyNativeLib.Swig", "MyNativeLib.Swig\MyNativeLib.Swig.vcxproj", "{E1D5A03B-C38B-4030-A936-C963FBBA1EA3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyNativeLib_Swig", "MyNativeLib.Swig\MyNativeLib.Swig.vcxproj", "{E1D5A03B-C38B-4030-A936-C963FBBA1EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
