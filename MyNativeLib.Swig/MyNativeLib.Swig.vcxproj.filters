@@ -13,21 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{7cd9f0a9-1dcd-4fb1-b680-720bccf5ba5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="MyNativeLib.i" />
+    <None Include="Generate.bat" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MyClass.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MyNativeLib_wrap.cxx">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

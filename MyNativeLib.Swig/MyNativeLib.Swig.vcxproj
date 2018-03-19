@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{35F373E0-75AE-4C2F-9177-0A1FD0C8BD59}</ProjectGuid>
-    <RootNamespace>MyNativeLib</RootNamespace>
+    <ProjectGuid>{DB100C07-1663-4769-8228-EADB1AE6E630}</ProjectGuid>
+    <RootNamespace>MyNativeLibSwig</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -35,7 +35,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -48,7 +48,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -139,12 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="MyClass.h" />
-    <ClInclude Include="Point.h" />
+    <ClCompile Include="MyNativeLib_wrap.cxx" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyClass.cpp" />
-    <ClCompile Include="Point.cpp" />
+    <None Include="Generate.bat" />
+    <None Include="MyNativeLib.i" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyNativeLib\MyNativeLib.vcxproj">
+      <Project>{35f373e0-75ae-4c2f-9177-0a1fd0c8bd59}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

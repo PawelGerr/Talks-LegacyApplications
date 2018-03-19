@@ -5,8 +5,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Generated\" />
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy $(SolutionDir)MyNativeLib\out\MyNativeLib.dll $(OutDir)" />
+    <Exec Command="copy $(SolutionDir)MyNativeLib\out\MyNativeLib.dll $(OutDir)&#xD;&#xA;copy $(SolutionDir)MyNativeLib.Swig\out\MyNativeLib.Swig.dll $(OutDir)" />
   </Target>
 
 </Project>
