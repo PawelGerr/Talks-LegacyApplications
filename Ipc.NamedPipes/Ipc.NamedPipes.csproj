@@ -11,4 +11,12 @@
 		<PackageReference Include="System.Reactive" Version="3.1.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Interop.Swig\Interop.Swig.csproj" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="copy $(SolutionDir)x64\Release\MyNativeLib.dll $(OutDir)&#xD;&#xA;copy $(SolutionDir)x64\Release\MyNativeLib_Swig.dll $(OutDir)" />
+	</Target>
+
 </Project>

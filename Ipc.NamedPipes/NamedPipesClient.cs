@@ -29,36 +29,15 @@ namespace Ipc.NamedPipes
 			_received = CreateReceiver();
 		}
 
-		public IObservable<T> Received<T>()
-		{
-			return _received
-					.Where(m => m is T)
-					.Select(m => (T)m);
-		}
-
-		public async Task SendAsync(object message, CancellationToken cancellationToken = default)
-		{
-			using (var pipe = CreateClientStream())
-			{
-				await pipe.ConnectAsync(cancellationToken).ConfigureAwait(false);
-				WriteMessage(pipe, message);
-			}
-		}
-
-		private NamedPipeClientStream CreateClientStream()
-		{
-			return new NamedPipeClientStream(".", PeerId.ToString("N"), PipeDirection.Out);
-		}
-
 		private IObservable<object> CreateReceiver()
 		{
-			return Observable.Create<object>(async (observer, token) =>
+			return Observable.Create<object>(async (observer, cancellationToken) =>
 							{
 								using (var pipe = CreateServerStream())
 								{
-									while (!token.IsCancellationRequested)
+									while (!cancellationToken.IsCancellationRequested)
 									{
-										await pipe.WaitForConnectionAsync(token).ConfigureAwait(false);
+										await pipe.WaitForConnectionAsync(cancellationToken).ConfigureAwait(false);
 
 										var message = ReadMessage(pipe);
 										observer.OnNext(message);
@@ -73,6 +52,27 @@ namespace Ipc.NamedPipes
 		private NamedPipeServerStream CreateServerStream()
 		{
 			return new NamedPipeServerStream(OwnId.ToString("N"), PipeDirection.In, 1, PipeTransmissionMode.Byte);
+		}
+
+		private NamedPipeClientStream CreateClientStream()
+		{
+			return new NamedPipeClientStream(".", PeerId.ToString("N"), PipeDirection.Out);
+		}
+
+		public IObservable<T> Received<T>()
+		{
+			return _received
+					.Where(m => m is T)
+					.Select(m => (T)m);
+		}
+
+		public async Task SendAsync(object message, CancellationToken cancellationToken = default)
+		{
+			using (var pipe = CreateClientStream())
+			{
+				await pipe.ConnectAsync(cancellationToken).ConfigureAwait(false);
+				WriteMessage(pipe, message);
+			}
 		}
 
 		private void WriteMessage(Stream stream, object message)
@@ -97,7 +97,8 @@ namespace Ipc.NamedPipes
 			using (var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true))
 			using (var jsonReader = new JsonTextReader(reader))
 			{
-				var serializer = JsonSerializer.CreateDefault();
+				var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
+				var serializer = JsonSerializer.CreateDefault(settings);
 				return serializer.Deserialize(jsonReader);
 			}
 		}
