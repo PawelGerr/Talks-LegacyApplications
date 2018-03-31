@@ -2,7 +2,7 @@ using System;
 
 namespace Ipc.NamedPipes
 {
-	public class RandomNextResponse
+	public class RandomNextResponse : IResponse
 	{
 		public Guid RequestId { get; set; }
 		public int Value { get; set; }
