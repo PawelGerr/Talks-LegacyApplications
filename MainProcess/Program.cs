@@ -19,7 +19,9 @@ namespace MainProcess
 				using (var childProcessLease = processPool.LeaseProcess())
 				{
 					var request = new RandomNextRequest() { Id = Guid.NewGuid() };
-					var response = await childProcessLease.ChildProcess.ExecuteAsync<RandomNextResponse>(request).ConfigureAwait(false);
+					var response = await childProcessLease.ChildProcess
+					                                      .ExecuteAsync<RandomNextResponse>(request)
+					                                      .ConfigureAwait(false);
 
 					Console.WriteLine($"[{DateTime.Now}] Next random number is {response.Value}");
 				}

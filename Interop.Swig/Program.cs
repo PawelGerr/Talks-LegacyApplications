@@ -9,6 +9,9 @@ namespace Interop.Swig
 			var random = new Random();
 
 			Console.WriteLine($"Next random number is {random.Next()}");
+
+		   Console.WriteLine("\nPress ENTER to exit.");
+		   Console.ReadLine();
 		}
 	}
 }

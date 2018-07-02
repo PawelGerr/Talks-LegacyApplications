@@ -8,17 +8,17 @@ namespace WebApi.Controllers
 	[Route("api/[controller]")]
 	public class RandomController : Controller
 	{
-		private readonly RandomClient _random;
+		private readonly RandomClient _randomClient;
 
 		public RandomController(RandomClient randomClient)
 		{
-			_random = randomClient ?? throw new ArgumentNullException(nameof(randomClient));
+			_randomClient = randomClient ?? throw new ArgumentNullException(nameof(randomClient));
 		}
 
 		[HttpGet("next")]
 		public async Task<IActionResult> NextAsync()
 		{
-			var value = await _random.NextAsync().ConfigureAwait(false);
+			var value = await _randomClient.NextAsync().ConfigureAwait(false);
 
 			return Ok(value);
 		}

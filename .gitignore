@@ -2,6 +2,7 @@
 *\.DotSettings\.user
 
 **/\.vs/
+**/\.idea/
 **/Release/
 **/Debug/
 **/x64/

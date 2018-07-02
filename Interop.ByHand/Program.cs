@@ -10,6 +10,9 @@ namespace Interop.ByHand
 			var number = RandomInterop.Next(random);
 
 			Console.WriteLine($"Next random number is {number}");
+
+         Console.WriteLine("\nPress ENTER to exit.");
+		   Console.ReadLine();
 		}
 	}
 }

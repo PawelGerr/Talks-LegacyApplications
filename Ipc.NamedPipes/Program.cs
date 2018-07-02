@@ -39,8 +39,12 @@ namespace Ipc.NamedPipes
 			var server = new MyNativeLibServer(serverIpc, random);
 			server.Start();
 
+         // -----------------
+
 			var clientIpc = new NamedPipesClient(serverIpc.PeerId, serverIpc.OwnId);
 			var client = new MyNativeLibClient(clientIpc);
+
+         //-----------------
 
 			while (true)
 			{

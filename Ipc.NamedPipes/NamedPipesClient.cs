@@ -54,9 +54,18 @@ namespace Ipc.NamedPipes
 			return new NamedPipeServerStream(OwnId.ToString("N"), PipeDirection.In, 1, PipeTransmissionMode.Byte);
 		}
 
-		private NamedPipeClientStream CreateClientStream()
+		private object ReadMessage(Stream stream)
 		{
-			return new NamedPipeClientStream(".", PeerId.ToString("N"), PipeDirection.Out);
+			if (stream == null)
+				throw new ArgumentNullException(nameof(stream));
+
+			using (var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true))
+			using (var jsonReader = new JsonTextReader(reader))
+			{
+				var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
+				var serializer = JsonSerializer.CreateDefault(settings);
+				return serializer.Deserialize(jsonReader);
+			}
 		}
 
 		public IObservable<T> Received<T>()
@@ -75,6 +84,11 @@ namespace Ipc.NamedPipes
 			}
 		}
 
+		private NamedPipeClientStream CreateClientStream()
+		{
+			return new NamedPipeClientStream(".", PeerId.ToString("N"), PipeDirection.Out);
+		}
+
 		private void WriteMessage(Stream stream, object message)
 		{
 			if (stream == null)
@@ -86,20 +100,6 @@ namespace Ipc.NamedPipes
 				var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
 				var serializer = JsonSerializer.CreateDefault(settings);
 				serializer.Serialize(jsonWriter, message);
-			}
-		}
-
-		private object ReadMessage(Stream stream)
-		{
-			if (stream == null)
-				throw new ArgumentNullException(nameof(stream));
-
-			using (var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, true))
-			using (var jsonReader = new JsonTextReader(reader))
-			{
-				var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects };
-				var serializer = JsonSerializer.CreateDefault(settings);
-				return serializer.Deserialize(jsonReader);
 			}
 		}
 	}

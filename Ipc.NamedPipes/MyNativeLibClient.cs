@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading;
@@ -28,6 +29,9 @@ namespace Ipc.NamedPipes
 			await _ipcClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
 			var response = await responseTask.ConfigureAwait(false);
+
+         if(response == null)
+            throw new DataException("Server didn't yield any result.");
 
 			return response.Value;
 		}
