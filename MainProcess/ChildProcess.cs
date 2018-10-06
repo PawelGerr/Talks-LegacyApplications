@@ -39,7 +39,7 @@ namespace MainProcess
 
 		private ProcessStartInfo CreateStartInfo()
 		{
-			var childProcessExe = Path.GetFullPath(@"..\..\..\..\ChildProcess\bin\netcoreapp2.0\ChildProcess.dll");
+			var childProcessExe = Path.GetFullPath(@"..\..\..\..\ChildProcess\bin\netcoreapp2.1\ChildProcess.dll");
 			var args = $"\"{childProcessExe}\" \"{_ipcClient.OwnId}\" \"{_ipcClient.PeerId}\" \"{Process.GetCurrentProcess().Id}\"";
 
 			return new ProcessStartInfo("dotnet.exe", args)

@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using MainProcess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,8 @@ namespace WebApi
 	{
 		static void Main(string[] args)
 		{
+			Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
 			var webHost = new WebHostBuilder()
 				.UseKestrel()
 				.ConfigureServices(services =>

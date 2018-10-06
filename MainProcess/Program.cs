@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Ipc.NamedPipes;
 
@@ -10,6 +12,8 @@ namespace MainProcess
 	{
 		static async Task Main()
 		{
+			Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
 			Console.CancelKeyPress += (sender, args) => Environment.Exit(0);
 
 			var processPool = new ChildProcessPool();
