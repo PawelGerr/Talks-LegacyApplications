@@ -19,6 +19,8 @@ namespace Ipc.NamedPipes
 			_ipcClient.Received<RandomNextRequest>()
 					.Subscribe(async req =>
 					{
+						Console.WriteLine($"[{DateTime.Now}] Request received.");
+
 						var value = _random.Next();
 						var response = new RandomNextResponse(req.Id, value);
 						await _ipcClient.SendAsync(response, cancellationToken).ConfigureAwait(false);

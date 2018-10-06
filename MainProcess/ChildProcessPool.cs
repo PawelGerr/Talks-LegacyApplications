@@ -33,7 +33,8 @@ namespace MainProcess
 		private ChildProcess SpawnNewProcess()
 		{
 			var ipcClient = new NamedPipesClient();
-			var childProcess = new ChildProcess(ipcClient);
+			var requestResponseClent = new NamedPipesRequestResponseClient(ipcClient);
+			var childProcess = new ChildProcess(requestResponseClent);
 
 			childProcess.Start();
 

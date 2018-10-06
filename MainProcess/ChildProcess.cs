@@ -1,8 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
 using System.Threading;
 using System.Threading.Tasks;
 using Ipc.NamedPipes;
@@ -11,12 +9,12 @@ namespace MainProcess
 {
 	public class ChildProcess : IDisposable
 	{
-		private readonly NamedPipesClient _ipcClient;
+		private readonly NamedPipesRequestResponseClient _ipcClient;
 		private readonly Process _process;
 
 		public bool HasExited => _process.HasExited;
 
-		public ChildProcess(NamedPipesClient ipcClient)
+		public ChildProcess(NamedPipesRequestResponseClient ipcClient)
 		{
 			_ipcClient = ipcClient;
 			_process = CreateProcess();
@@ -61,18 +59,10 @@ namespace MainProcess
 			_process.BeginErrorReadLine();
 		}
 
-		public async Task<TResponse> ExecuteAsync<TResponse>(IRequest request, CancellationToken cancellationToken = default)
+		public Task<TResponse> ExecuteAsync<TResponse>(IRequest request, CancellationToken cancellationToken = default)
 			where TResponse : IResponse
 		{
-			var responseTask = _ipcClient.Received<TResponse>()
-										.Where(resp => resp.RequestId == request.Id)
-										.Timeout(TimeSpan.FromSeconds(5))
-										.FirstOrDefaultAsync()
-										.ToTask(cancellationToken);
-
-			await _ipcClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
-
-			return await responseTask.ConfigureAwait(false);
+			return _ipcClient.ExecuteAsync<TResponse>(request, TimeSpan.FromSeconds(5), cancellationToken);
 		}
 
 		public void Dispose()

@@ -42,14 +42,16 @@ namespace Ipc.NamedPipes
          // -----------------
 
 			var clientIpc = new NamedPipesClient(serverIpc.PeerId, serverIpc.OwnId);
-			var client = new MyNativeLibClient(clientIpc);
+			var client = new NamedPipesRequestResponseClient(clientIpc);
 
          //-----------------
 
 			while (true)
 			{
-				var value = await client.NextAsync().ConfigureAwait(false);
-				Console.WriteLine($"[{DateTime.Now}] Next random number is {value}");
+				var request = new RandomNextRequest() { Id = Guid.NewGuid() };
+
+				var response = await client.ExecuteAsync<RandomNextResponse>(request).ConfigureAwait(false);
+				Console.WriteLine($"[{DateTime.Now}] Next random number is {response.Value}");
 
 				Console.ReadLine();
 			}
