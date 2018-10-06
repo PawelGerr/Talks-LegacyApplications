@@ -20,6 +20,8 @@ namespace WebApi.Controllers
 		{
 			var value = await _randomClient.NextAsync().ConfigureAwait(false);
 
+			Console.WriteLine($"[{DateTime.Now}] Next random number is {value}");
+
 			return Ok(value);
 		}
 	}

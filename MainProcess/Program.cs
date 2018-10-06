@@ -8,30 +8,24 @@ using Ipc.NamedPipes;
 
 namespace MainProcess
 {
-	class Program
-	{
-		static async Task Main()
-		{
-			Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+   class Program
+   {
+      static async Task Main()
+      {
+         Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-			Console.CancelKeyPress += (sender, args) => Environment.Exit(0);
+         Console.CancelKeyPress += (sender, args) => Environment.Exit(0);
 
-			var processPool = new ChildProcessPool();
+         var processPool = new ChildProcessPool();
+         var randomClient = new RandomClient(processPool);
 
-			while (true)
-			{
-				using (var childProcessLease = processPool.LeaseProcess())
-				{
-					var request = new RandomNextRequest() { Id = Guid.NewGuid() };
-					var response = await childProcessLease.ChildProcess
-					                                      .ExecuteAsync<RandomNextResponse>(request)
-					                                      .ConfigureAwait(false);
+         while (true)
+         {
+            var value = await randomClient.NextAsync();
 
-					Console.WriteLine($"[{DateTime.Now}] Next random number is {response.Value}");
-				}
-
-				Console.ReadLine();
-			}
-		}
-	}
+            Console.WriteLine($"[{DateTime.Now}] Next random number is {value}");
+            Console.ReadLine();
+         }
+      }
+   }
 }
